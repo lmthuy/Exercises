@@ -213,7 +213,7 @@ public class Ex4_AddProduct extends BaseTest {
         Thread.sleep(2000);
         WebElement addProduct = driver.findElement(By.xpath("//span[@data-notify='message']"));
         addProduct.getText();
-        Thread.sleep(2000);
+        Thread.sleep(1500);
         Assert.assertEquals(addProduct.getText(), "Product has been inserted successfully", "Add Procduct không thành công");
 
         //Check New Product
