@@ -229,7 +229,6 @@ public class Ex4_AddProduct extends BaseTest {
         Assert.assertEquals(checkNewProduct.getText(), "Acer Nitro 5", "New Product chưa được add");
 
 
-
     }
 }
 
