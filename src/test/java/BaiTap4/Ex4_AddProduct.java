@@ -1,18 +1,18 @@
 package BaiTap4;
+/*
 
-
+import projectmaven.utils.WebUI;
 import common.BaseTest;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
-
+import java.time.Duration;
 
 
 public class Ex4_AddProduct extends BaseTest {
-   /* @Test(priority = 1, description = "Login Ecommerce Page")
+    @Test(priority = 1, description = "Login Ecommerce Page")
     public static void Login() throws InterruptedException {
         driver.get("https://ecommerce.anhtester.com/users/login");
         Thread.sleep(1500);
@@ -28,149 +28,93 @@ public class Ex4_AddProduct extends BaseTest {
         Thread.sleep(2000);
 
     }
-*/
-    @Test(priority = 1, description = "Add New Product")
-    public void AddProduct() throws InterruptedException {
 
-        driver.findElement(By.xpath("//span[normalize-space()='Add New Product']")).click();
-        Thread.sleep(5000);
+    @Test(priority = 2, description = "Add New Product")
+    public void AddProduct() throws InterruptedException {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        WebUI.clickElement(driver, By.xpath("//span[normalize-space()='Products']"));
+
+        WebUI.clickElement(driver, By.xpath("//span[normalize-space()='Add New Product']"));
 
         //Feature and Deal
-        driver.findElement(By.xpath("(//span[position()=1])[82]")).click();
-        Thread.sleep(5000);
-        driver.findElement(By.xpath("(//span[position()=1])[83]")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[@title='Choose Flash Title']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//span[normalize-space()='Flash Deal']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//input[@name='flash_discount']")).clear();
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//input[@name='flash_discount']")).sendKeys("10");
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//button[@title='Choose Discount Type']")).click();
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//span[normalize-space()='Percent']")).click();
-        Thread.sleep(1000);
+        WebUI.clickElement(driver, By.xpath("(//span[position()=1])[82]"));
+        WebUI.clickElement(driver, By.xpath("(//span[position()=1])[83]"));
+        WebUI.clickElement(driver, By.xpath("//button[@title='Choose Flash Title']"));
+        WebUI.clickElement(driver, By.xpath("//span[normalize-space()='Flash Deal']"));
+        WebUI.clearInfor(driver, By.xpath("//input[@name='flash_discount']"));
+        WebUI.setText(driver, By.xpath("//input[@name='flash_discount']"), "10");
+        WebUI.clickElement(driver, By.xpath("//button[@title='Choose Discount Type']"));
+        WebUI.clickElement(driver, By.xpath("//span[normalize-space()='Percent']"));
 
         //Product Information
-        driver.findElement(By.xpath("//input[@placeholder='Product Name']")).sendKeys("Acer Nitro 5");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//button[@title='Computer & Accessories']")).click();
-        Thread.sleep(2000);
+        WebUI.setText(driver, By.xpath("//input[@placeholder='Product Name']"), "Acer Nitro 5");
+        WebUI.clickElement(driver, By.xpath("//button[@title='Computer & Accessories']"));
         WebElement Category = driver.findElement(By.xpath("//div[@class='dropdown-menu show']//input[@aria-label='Search']"));
         Category.sendKeys("Laptop Gaming");
-        Thread.sleep(2000);
         Category.sendKeys(Keys.ENTER);
-        driver.findElement(By.xpath("//div[contains(text(),'Select Brand')]")).click();
-        Thread.sleep(2000);
+        Thread.sleep(500);
+        WebUI.clickElement(driver, By.xpath("//div[contains(text(),'Select Brand')]"));
         WebElement Brand = driver.findElement(By.xpath("//div[@class='dropdown-menu show']//input[@aria-label='Search']"));
         Brand.sendKeys("Microsoft");
-        Thread.sleep(2000);
         Brand.sendKeys(Keys.ENTER);
-        driver.findElement(By.xpath("//input[@placeholder='Unit (e.g. KG, Pc etc)']")).sendKeys("1");
         Thread.sleep(500);
-        driver.findElement(By.xpath("//span[@role='textbox']")).sendKeys("Nitro 5");
-        Thread.sleep(1000);
+        WebUI.setText(driver, By.xpath("//input[@placeholder='Unit (e.g. KG, Pc etc)']"), "1");
+        WebUI.setText(driver, By.xpath("//span[@role='textbox']"), "Nitro 5");
 
         //Product Images
-        driver.findElement(By.xpath("//div[@data-multiple='true']//div[@class='form-control file-amount'][normalize-space()='Choose File']")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//div[@title='acer nitro 5.jpg']")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//button[normalize-space()='Add Files']")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("(//div[contains(text(),'Choose File')])[1]")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//div[@class='aiz-file-box']//div[@title='feature.jpg']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[normalize-space()='Add Files']")).click();
-        Thread.sleep(3000);
+        WebUI.clickElement(driver, By.xpath("//div[@data-multiple='true']//div[@class='form-control file-amount'][normalize-space()='Choose File']"));
+        WebUI.clickElement(driver, By.xpath("//div[@title='acer nitro 5.jpg']"));
+        WebUI.clickElement(driver, By.xpath("//button[normalize-space()='Add Files']"));
+        WebUI.clickElement(driver, By.xpath("//body/div[@class='aiz-main-wrapper']/div[@class='aiz-content-wrapper']/div[@class='aiz-main-content']/div[@class='px-15px px-lg-25px']/div/form[@id='choice_form']/div[@class='row gutters-5']/div[@class='col-lg-8']/div[@class='card']/div[@class='card-body']/div[2]/div[1]/div[1]/div[2]"));
+        WebUI.clickElement(driver, By.xpath("//div[@class='aiz-file-box']//div[@title='feature.jpg']"));
+        WebUI.clickElement(driver, By.xpath("//button[normalize-space()='Add Files']"));
 
         //Product Videos
-        driver.findElement(By.xpath("//input[@placeholder='Video Link']")).sendKeys("https://www.youtube.com/watch?v=vwYbI8c2Rsc");
-        Thread.sleep(2000);
+        WebUI.setText(driver, By.xpath("//input[@placeholder='Video Link']"), "https://www.youtube.com/watch?v=vwYbI8c2Rsc");
 
+        //Product Variation
         WebElement color = driver.findElement(By.xpath("//div[@class='col-md-1']//span"));
         Actions action = new Actions(driver);
         action.click(color).build().perform();
-        Thread.sleep(2000);
-
-
-        //Product Variation
-        driver.findElement(By.xpath("(//div[@class='filter-option-inner-inner'][normalize-space()='Nothing selected'])[1]")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//span[@class='text']//span//span[contains(text(),'DarkGreen')]")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//span[@class='text']//span//span[contains(text(),'DarkSlateBlue')]")).click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
+        WebUI.clickElement(driver, By.xpath("(//div[@class='filter-option-inner-inner'][normalize-space()='Nothing selected'])[1]"));
+        WebUI.clickElement(driver, By.xpath("//span[@class='text']//span//span[contains(text(),'DarkGreen')]"));
+        WebUI.clickElement(driver, By.xpath("//span[@class='text']//span//span[contains(text(),'DarkSlateBlue')]"));
         WebElement color1 = driver.findElement(By.xpath("//span[contains(text(),'DarkGreen')]"));
         WebElement color2 = driver.findElement(By.xpath("//span[contains(text(),'DarkSlateBlue')]"));
-        color1.getText();
-        Thread.sleep(2000);
-        color2.getText();
-        Thread.sleep(2000);
         System.out.println("*** Checking Color ***");
         Assert.assertEquals(color1.getText(), "DarkGreen", "False Selected Color");
         Assert.assertEquals(color2.getText(), "DarkSlateBlue", "False Selected Color");
 
-
-
         //Product price + stock
-        driver.findElement(By.xpath("//input[@placeholder='Unit price']")).clear();
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//input[@placeholder='Unit price']")).sendKeys("250");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//input[@placeholder='Select Date']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//div[@class='drp-calendar left']//div[@class='calendar-table']//td[.='21']")).click();
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//select[@class='hourselect']//option[@value='8'][normalize-space()='8']")).click();
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//div[@class='drp-calendar left']//div[@class='calendar-table']//td[.='31']")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//button[@class='applyBtn btn btn-sm btn-primary']")).click();
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//input[@placeholder='Discount']")).clear();
-        Thread.sleep(200);
-        driver.findElement(By.xpath("//input[@placeholder='Discount']")).sendKeys("25");
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//div[@class='col-md-3']//button[@title='Flat']")).click();
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//span[normalize-space()='Percent']")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//input[@name='price_DarkGreen']")).clear();
-        Thread.sleep(2500);
-        driver.findElement(By.xpath("//input[@name='price_DarkGreen']")).sendKeys("250");
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//input[@name='sku_DarkGreen']")).sendKeys("ABC256");
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//input[@name='qty_DarkGreen']")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//input[@name='qty_DarkGreen']")).sendKeys("5");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//input[@name='price_DarkSlateBlue']")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//input[@name='price_DarkSlateBlue']")).sendKeys("300");
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//input[@name='sku_DarkSlateBlue']")).sendKeys("ABC256");
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//input[@name='qty_DarkSlateBlue']")).clear();
-        Thread.sleep(100);
-        driver.findElement(By.xpath("//input[@name='qty_DarkSlateBlue']")).sendKeys("3");
-        Thread.sleep(500);
+        WebUI.clearInfor(driver, By.xpath("//input[@placeholder='Unit price']"));
+        WebUI.setText(driver, By.xpath("//input[@placeholder='Unit price']"), "250");
+        WebUI.clickElement(driver, By.xpath("//input[@placeholder='Select Date']"));
+        WebUI.clickElement(driver, By.xpath("//div[@class='drp-calendar left']//div[@class='calendar-table']//td[.='21']"));
+        WebUI.clickElement(driver, By.xpath("//select[@class='hourselect']//option[@value='8'][normalize-space()='8']"));
+        WebUI.clickElement(driver, By.xpath("//div[@class='drp-calendar left']//div[@class='calendar-table']//td[.='31']"));
+        WebUI.clickElement(driver, By.xpath("//button[@class='applyBtn btn btn-sm btn-primary']"));
+        WebUI.clearInfor(driver, By.xpath("//input[@placeholder='Discount']"));
+        WebUI.setText(driver, By.xpath("//input[@placeholder='Discount']"), "25");
+        WebUI.clickElement(driver, By.xpath("//div[@class='col-md-3']//button[@title='Flat']"));
+        WebUI.clickElement(driver, By.xpath("//span[normalize-space()='Percent']"));
+        WebUI.clearInfor(driver, By.xpath("//input[@name='price_DarkGreen']"));
+        WebUI.setText(driver, By.xpath("//input[@name='price_DarkGreen']"), "250");
+        WebUI.setText(driver, By.xpath("//input[@name='sku_DarkGreen']"), "ABC456");
+        WebUI.clearInfor(driver, By.xpath("//input[@name='qty_DarkGreen']"));
+        WebUI.setText(driver, By.xpath("//input[@name='qty_DarkGreen']"), "5");
+        WebUI.clearInfor(driver, By.xpath("//input[@name='price_DarkSlateBlue']"));
+        WebUI.setText(driver, By.xpath("//input[@name='price_DarkSlateBlue']"), "300");
+        WebUI.setText(driver, By.xpath("//input[@name='sku_DarkSlateBlue']"), "ABC456");
+        WebUI.clearInfor(driver, By.xpath("//input[@name='qty_DarkSlateBlue']"));
+        WebUI.setText(driver, By.xpath("//input[@name='qty_DarkSlateBlue']"), "3");
 
         //Product Description
-        driver.findElement(By.xpath("//button[@aria-label='Link (CTRL+K)']")).click();
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//label[normalize-space()='Text to display']/following-sibling::input")).sendKeys("Testing");
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//label[normalize-space()='To what URL should this link go?']/following-sibling::input")).sendKeys("https://anhtester.com");
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//input[@aria-label='Open in new window']")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//input[@value='Insert Link']")).click();
-        Thread.sleep(500);
+        WebUI.clickElement(driver, By.xpath("//button[@aria-label='Link (CTRL+K)']"));
+        WebUI.setText(driver, By.xpath("//label[normalize-space()='Text to display']/following-sibling::input"), "Testing");
+        WebUI.setText(driver, By.xpath("//label[normalize-space()='To what URL should this link go?']/following-sibling::input"), "https://anhtester.com");
+        WebUI.clickElement(driver, By.xpath("//input[@aria-label='Open in new window']"));
+        WebUI.clickElement(driver, By.xpath("//input[@value='Insert Link']"));
         WebElement enter = driver.findElement(By.xpath("//div[@role='textbox']"));
         enter.sendKeys(Keys.ENTER);
         Thread.sleep(500);
@@ -183,41 +127,44 @@ public class Ex4_AddProduct extends BaseTest {
         Thread.sleep(2000);
 
         //PDF Specification
-        driver.findElement(By.xpath("//div[@data-type='document']//div[@class='form-control file-amount'][normalize-space()='Choose File']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//div[@title='Description.pdf']")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//button[normalize-space()='Add Files']")).click();
-        Thread.sleep(1000);
+        WebUI.clickElement(driver, By.xpath("//div[@data-type='document']//div[@class='form-control file-amount'][normalize-space()='Choose File']"));
+        WebUI.clickElement(driver, By.xpath("//div[@title='Description.pdf']"));
+        WebUI.clickElement(driver, By.xpath("//button[normalize-space()='Add Files']"));
 
         //SEO Meta Tags
-        driver.findElement(By.xpath("//input[@placeholder='Meta Title']")).sendKeys("Automation Testing");
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//textarea[@name='meta_description']")).sendKeys(" Nice design; support USB-C; decent hardware; nice performance");
-        Thread.sleep(500);
+        WebUI.setText(driver, By.xpath("//input[@placeholder='Meta Title']"),"Automation Testing");
+        WebUI.setText(driver, By.xpath("//textarea[@name='meta_description']"), " Nice design; support USB-C; decent hardware; nice performance");
 
         //Estimate Shipping Time
-        driver.findElement(By.xpath("//input[@placeholder='Shipping Days']")).sendKeys("4");
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//input[@placeholder='Tax']")).clear();
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//input[@placeholder='Tax']")).sendKeys("3");
-        Thread.sleep(500);
-        driver.findElement(By.xpath("(//div[@class='form-group col-md-6'])[2]")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[1]/div[2]/div[9]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]")).click();
-        Thread.sleep(1000);
+        WebUI.setText(driver, By.xpath("//input[@placeholder='Shipping Days']"),"4");
+        WebUI.clearInfor(driver, By.xpath("//input[@placeholder='Tax']"));
+        WebUI.setText(driver, By.xpath("//input[@placeholder='Tax']"), "3");
+        WebUI.clickElement(driver, By.xpath("(//div[@class='form-group col-md-6'])[2]"));
+        WebUI.clickElement(driver, By.xpath("/html[1]/body[1]/div[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[1]/div[2]/div[9]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]"));
 
         //SAVE
-        driver.findElement(By.xpath("//button[normalize-space()='Save & Publish']")).click();
-        Thread.sleep(2000);
+        WebUI.clickElement(driver, By.xpath("//button[normalize-space()='Save & Publish']"));
         WebElement addProduct = driver.findElement(By.xpath("//span[@data-notify='message']"));
-        addProduct.getText();
-        Thread.sleep(2000);
+        System.out.println(addProduct.getText());
         Assert.assertEquals(addProduct.getText(), "Product has been inserted successfully", "Add Procduct không thành công");
 
         //Check New Product
-        WebElement NewProduct = driver.findElement(By.xpath("//input[@id='search']"));
+
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(false);", driver.findElement(By.xpath("//input[@id='search']")));
+        driver.findElement(By.xpath("//input[@id='search']")).sendKeys("Acer Nitro 5");
+
+        WebUI.elementToBeClickable(driver, By.xpath("//span[@class='text-muted text-truncate-2']"));
+        String titleProduct = driver.findElement(By.xpath("//span[@class='text-muted text-truncate-2']")).getText();
+        Assert.assertEquals(titleProduct, "Acer Nitro 5", "Sai tên Prodcut");
+
+
+    }
+}
+
+/*
+ WebElement NewProduct = driver.findElement(By.xpath("//input[@id='search']"));
         NewProduct.sendKeys("Acer Nitro 5");
         Thread.sleep(500);
         NewProduct.sendKeys(Keys.ENTER);
@@ -227,11 +174,4 @@ public class Ex4_AddProduct extends BaseTest {
         checkNewProduct.getText();
         Thread.sleep(5000);
         Assert.assertEquals(checkNewProduct.getText(), "Acer Nitro 5", "New Product chưa được add");
-
-
-    }
-}
-
-
-
-
+ */

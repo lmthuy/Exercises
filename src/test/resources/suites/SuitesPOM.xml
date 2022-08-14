@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="BaiTap5" verbose="1">
+    <test name="LogIn-Dashboard-Category-Product">
+        <classes>
+            <class name="BaiTap5.testcases.LogInTest"/>
+            <class name="BaiTap5.testcases.DashboardTest"/>
+            <class name="BaiTap5.testcases.CategoryTest"/>
+            <class name="BaiTap5.testcases.AddNewProductTest"/>
+        </classes>
+    </test>
+</suite>
