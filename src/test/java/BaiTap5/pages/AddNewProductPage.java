@@ -143,7 +143,7 @@ public class AddNewProductPage {
     }
 
     public void inputProductDescription() {
-        WebUI.setText(inputDescription, "Hi. Enjoy it. Thanks!");
+        WebUI.setText(inputDescription, "Hi. Enjoy it. Thanks.");
         Actions actions = new Actions(driver);
         actions.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).build().perform();
         actions.keyDown(Keys.CONTROL).sendKeys("b").keyUp(Keys.CONTROL).build().perform();
@@ -157,7 +157,7 @@ public class AddNewProductPage {
     }
 
     public void inputSEOMeta() {
-        driver.findElement(By.xpath("//input[@placeholder='Meta Title']")).sendKeys("Acer Nitro 5");
+        driver.findElement(By.xpath("//input[@placeholder='Meta Title']")).sendKeys("Nitro 5");
         driver.findElement(By.xpath("//textarea[@name='meta_description']")).sendKeys("Nice design; support USB-C; decent hardware; nice performance");
     }
 
