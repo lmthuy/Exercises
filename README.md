@@ -1,2 +1,2 @@
 # ProjectMaven
-Run Ex 4 with Suites
+Run Ex 5 with SuitesPOM
